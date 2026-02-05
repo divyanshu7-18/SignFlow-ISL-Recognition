@@ -1,138 +1,142 @@
-# SignFlow-ISL-Recognition
-Absolutely, Jesse 🙌
-Here’s a **detailed, clean, and submission-ready README** for your **SignFlow** project. You can paste this directly into your GitHub repo or project folder. I’ve written it in a **professional academic + developer-friendly** style that examiners and recruiters both like.
-
----
-
-# 🧠 SignFlow
+# 🧠 SignFlow AI Project
 
 ### Indian Sign Language (ISL) Recognition Using Deep Learning
 
 ---
 
-## 📌 Project Overview
+## 📌 Project Description
 
-**SignFlow** is a deep learning–based system designed to recognize **Indian Sign Language (ISL)** gestures from live video input and convert them into readable text. The project aims to bridge the communication gap between the **hearing/speech-impaired community** and the general population by enabling real-time sign language interpretation.
+**SignFlow** is an AI-powered system that recognizes **Indian Sign Language (ISL)** gestures from video input and converts them into meaningful text. The project uses **computer vision**, **hand pose estimation**, and **deep learning** to enable real-time sign language recognition.
 
-Unlike many existing solutions that focus on American Sign Language (ASL), **SignFlow is tailored specifically for ISL**, making it more relevant for Indian users.
+This system is designed to help reduce communication barriers for the **hearing and speech impaired community**, with a focus on **Indian Sign Language**, which is often underrepresented in existing research.
 
 ---
 
 ## 🎯 Objectives
 
-* To recognize ISL hand gestures accurately using computer vision
-* To build a real-time sign recognition system using a webcam
-* To apply deep learning models for gesture classification
-* To provide an accessible communication aid for differently-abled users
+* Recognize ISL gestures from recorded and live video
+* Extract pose and hand landmarks from video frames
+* Train deep learning models for gesture classification
+* Enable real-time prediction using a webcam
+* Build a modular and extensible AI pipeline
 
 ---
 
-## 🚀 Features
+## 🚀 Key Features
 
-* 📷 Real-time gesture recognition using webcam
-* ✋ Hand landmark detection
+* 📷 Real-time gesture recognition
+* ✋ Hand & pose landmark extraction
 * 🧠 Deep learning–based classification
-* 📝 Gesture-to-text conversion
-* 🔧 Modular and extensible architecture
-* 🇮🇳 Focused on **Indian Sign Language (ISL)**
+* 📝 Gesture-to-text output
+* 🔄 Train, evaluate, and test pipeline
+* 🗂️ Clean and scalable project structure
 
 ---
 
-## 🏗️ System Architecture
+## 🏗️ Project Architecture
 
 ```
-Webcam Input
-     ↓
-Frame Extraction
-     ↓
-Hand & Pose Detection (MediaPipe)
-     ↓
-Feature Extraction (Keypoints)
-     ↓
-Deep Learning Model (CNN / LSTM)
-     ↓
-Gesture Classification
-     ↓
+Video Input (Live / Recorded)
+        ↓
+Frame Processing
+        ↓
+Pose & Hand Landmark Extraction
+        ↓
+Feature Normalization
+        ↓
+Deep Learning Model
+        ↓
+Gesture Prediction
+        ↓
 Text Output
 ```
-
----
-
-## 🛠️ Technologies Used
-
-### Programming Language
-
-* Python 3.x
-
-### Libraries & Frameworks
-
-* OpenCV – video capture and image processing
-* MediaPipe – hand and pose landmark detection
-* TensorFlow / Keras – deep learning model
-* NumPy – numerical computations
-* Matplotlib – visualization (training graphs)
 
 ---
 
 ## 📂 Project Structure
 
 ```
-SignFlow/
+SIGNFLOW_AI_PROJECT/
 │
-├── dataset/
-│   ├── train/
-│   ├── test/
+├── .vscode/                 # VS Code configuration
 │
-├── models/
-│   └── signflow_model.h5
+├── checkpoints/             # Saved model checkpoints
 │
-├── scripts/
-│   ├── collect_data.py
-│   ├── train_model.py
-│   ├── predict.py
+├── data/
+│   ├── raw/                 # Original datasets
+│   │   ├── ISL_CSLTR/
+│   │   └── Kaggle_Words/
+│   │
+│   ├── processed/           # Preprocessed data
+│   │   ├── poses/           # Extracted landmark data
+│   │   └── videos/          # Processed video files
 │
-├── utils/
-│   └── landmark_extraction.py
+├── dataset/                 # Final training/testing dataset
 │
-├── README.md
-├── requirements.txt
-└── main.py
+├── src/
+│   ├── data/                # Data handling scripts
+│   ├── model/               # Model architecture files
+│   ├── __init__.py
+│   ├── config.py            # Global configuration settings
+│   ├── train.py             # Model training logic
+│   ├── evaluate.py          # Model evaluation
+│   ├── predict.py           # Offline prediction
+│   ├── utils.py             # Utility functions
+│
+├── venv/                    # Python virtual environment
+│
+├── isl_model.h5             # Trained deep learning model
+├── labels.npy               # Gesture label mappings
+├── history.pkl              # Training history
+│
+├── predict_live.py           # Real-time webcam prediction
+├── train_model.py            # Training entry script
+├── test_dataset.py           # Dataset validation/testing
+├── requirements.txt          # Project dependencies
+└── README.md
 ```
 
 ---
 
-## 📊 Dataset Description
+## 📊 Dataset Information
 
-* Custom ISL dataset created using webcam input
-* Each gesture captured as multiple frames
-* Hand landmarks extracted using MediaPipe
-* Data stored as numerical keypoints
-* Supports both **static** and **dynamic** gestures
+* **Raw Datasets**
 
-> ⚠️ Dataset size directly affects accuracy. Larger and more diverse datasets improve performance.
+  * ISL_CSLTR
+  * Kaggle_Words
+* Data consists of:
+
+  * Videos of ISL gestures
+  * Multiple samples per gesture
+* Preprocessing includes:
+
+  * Frame extraction
+  * Hand & pose landmark detection
+  * Normalization and labeling
 
 ---
 
-## 🧠 Model Description
+## 🧠 Model Details
 
-* **Input:** Hand landmark keypoints (x, y, z coordinates)
-* **Model Type:**
+* **Input:** Hand and pose landmark coordinates (x, y, z)
+* **Architecture:**
 
-  * CNN for static gestures
-  * LSTM for dynamic/temporal gestures
+  * CNN for spatial feature extraction
+  * LSTM for temporal gesture modeling
 * **Loss Function:** Categorical Crossentropy
 * **Optimizer:** Adam
-* **Output:** Predicted ISL gesture label
+* **Output:** Predicted ISL gesture class
 
 ---
 
 ## ⚙️ Installation & Setup
 
-### 1️⃣ Clone the Repository
+### 1️⃣ Create Virtual Environment (Recommended)
 
 ```bash
-git clone https://github.com/your-username/SignFlow.git
-cd SignFlow
+python -m venv venv
+source venv/bin/activate   # Linux/Mac
+venv\Scripts\activate      # Windows
 ```
 
 ### 2️⃣ Install Dependencies
@@ -141,64 +145,85 @@ cd SignFlow
 pip install -r requirements.txt
 ```
 
-### 3️⃣ Run the Application
-
-```bash
-python main.py
-```
-
 ---
 
-## ▶️ How It Works
+## 🏃 Running the Project
 
-1. Webcam captures live video frames
-2. MediaPipe detects hand landmarks
-3. Keypoints are extracted and normalized
-4. Model predicts the gesture
-5. Output text is displayed on screen
+### 🔹 Train the Model
+
+```bash
+python train_model.py
+```
+
+### 🔹 Evaluate the Model
+
+```bash
+python src/evaluate.py
+```
+
+### 🔹 Test Dataset Integrity
+
+```bash
+python test_dataset.py
+```
+
+### 🔹 Predict from Saved Data
+
+```bash
+python src/predict.py
+```
+
+### 🔹 Real-Time Gesture Recognition
+
+```bash
+python predict_live.py
+```
 
 ---
 
 ## 📈 Results
 
-* Achieved high accuracy for trained gestures
-* Real-time prediction with minimal latency
-* Performs best in well-lit environments
+* Accurate recognition of trained ISL gestures
+* Low-latency real-time predictions
+* Stable performance with sufficient lighting and clear gestures
 
 ---
 
 ## ⚠️ Limitations
 
-* Limited vocabulary (depends on dataset size)
-* Sensitive to lighting and camera angle
-* Complex sentence formation not fully supported
-* Overlapping hands may reduce accuracy
+* Limited gesture vocabulary (dataset dependent)
+* Performance affected by lighting conditions
+* Complex sentence-level recognition not implemented
+* Occlusion and overlapping hands reduce accuracy
 
 ---
 
-## 🔮 Future Enhancements
+## 🔮 Future Improvements
 
-* 🔊 Text-to-speech output
+* 🔊 Text-to-Speech integration
 * 🧾 Sentence-level gesture recognition
-* 📱 Mobile application support
+* 📱 Mobile and web deployment
 * ☁️ Cloud-based inference
-* 🤖 Transformer-based models for context understanding
+* 🧠 Transformer-based temporal models
 
 ---
 
-## 🎓 Academic Relevance
+## 🎓 Academic Use
 
-* Suitable for **AI / ML / Deep Learning** coursework
-* Can be extended into a **final-year project**
-* Relevant to **assistive technology research**
+This project is suitable for:
+
+* AI / ML / Deep Learning coursework
+* Final-year engineering projects
+* Assistive technology research
+* Computer vision applications
 
 ---
 
 ## 👨‍💻 Author
 
 **Divyanshu Kumar**
-AI & Machine Learning Enthusiast
-Project: *Indian Sign Language Recognition Using Deep Learning*
+Artificial Intelligence & Machine Learning
+Project: *SignFlow – Indian Sign Language Recognition*
 
 ---
 
